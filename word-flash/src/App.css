@@ -1,0 +1,143 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* App.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f8ff;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 600px;
+}
+
+.word-box {
+  margin: 1rem 0;
+}
+
+.words {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #2c5a94;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-box {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 2px solid #2c5a94;
+  border-radius: 0.5rem;
+}
+
+button {
+  padding: 0.75rem;
+  background-color: #2c5a94;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #1d4170;
+}
+
+.score-section {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  color: #2c5a94;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.revealed-words {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.word-pill {
+  background-color: #e4eaff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  color: #2c5a94;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.next-button {
+  margin-top: 1.5rem; /* Increased for more breathing room */
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  background-color: #2c5a94;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.level-selector {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
