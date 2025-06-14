@@ -19,6 +19,8 @@ function App() {
   const [isVisible, setIsVisible] = useState(true);
   const [score, setScore] = useState(null);
   const [difficulty, setDifficulty] = useState("easy");
+  const [stage, setStage] = useState("home"); // stages: "home", "game", "result"
+
 
 
   useEffect(() => {
@@ -68,6 +70,7 @@ function App() {
   setUserInputs(new Array(wordCount).fill(""));
   setIsVisible(true);
   setScore(null);
+  setStage("game");
 
   setTimeout(() => {
     setIsVisible(false);
@@ -75,17 +78,23 @@ function App() {
 };
 
 
-  return (
-    <div className="level-selector">
-  <label>Select difficulty:</label>
-  <select onChange={(e) => setDifficulty(e.target.value)} value={difficulty}>
-    <option value="easy">Easy</option>
-    <option value="medium">Medium</option>
-    <option value="hard">Hard</option>
-  </select>
+return (
+  <div className="container">
+    <div className="card">
+      {!isVisible && (
+        <button className="restart-button-inside" onClick={startNewRound}>
+          ⟳ Restart
+        </button>
+        
+      )}
+      <button
+    type="button"
+    className="home-button"
+    onClick={() => setStage("home")}
+  >
+    Return to Home
+  </button>
 
-
-    <div className="container">
       <h1>Word Flash Game</h1>
 
       {isVisible ? (
@@ -95,20 +104,23 @@ function App() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="input-section">
-          <h2>Enter the words you remember:</h2>
-          {userInputs.map((value, index) => (
-  <input
-    key={index}
-    type="text"
-    value={value}
-    onChange={(e) => handleInputChange(index, e.target.value)}
-    placeholder={`Word ${index + 1}`}
-    className="input-box"
-  />
-))}
+  <h2>Enter the words you remember:</h2>
+  {userInputs.map((value, index) => (
+    <input
+      key={index}
+      type="text"
+      value={value}
+      onChange={(e) => handleInputChange(index, e.target.value)}
+      placeholder={`Word ${index + 1}`}
+      className="input-box"
+    />
+  ))}
 
-          <button type="submit">Submit</button>
-        </form>
+  <div className="submit-button-wrapper">
+    <button type="submit" className="submit-full">Submit</button>
+  </div>
+</form>
+
       )}
 
       {score !== null && (
@@ -131,12 +143,13 @@ function App() {
           <button className="next-button" onClick={startNewRound}>
             Next
           </button>
+          <button className="home-button" onClick={() => setStage("home")}>
+            Return to Home
+          </button>
         </div>
       )}
-
     </div>
-    </div>
-  );
+  </div>
+);
 }
-
 export default App;
