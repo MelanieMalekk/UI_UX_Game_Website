@@ -1,0 +1,395 @@
+:root {
+  --background-color: #2A004F;
+  --title-color: #FFD600;
+  --subtitle-color: #00E5FF;
+  --button-bg: #00E676;
+  --button-text-color: #FFFFFF;
+  --icon-bg: #FF00C8;
+}
+
+body {
+  margin: 0;
+  font-family: 'Fredoka', sans-serif;
+}
+
+.home-container {
+  background-color: var(--background-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.home-header {
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.high-score {
+  font-size: 16px;
+  padding-left: 50px;
+  padding-top: 30px;
+}
+
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-right: 50px;
+  padding-top: 30px;
+}
+
+.username {
+  font-size: 16px;
+  text-decoration: underline;
+  padding-right: 50px;
+}
+
+.icons {
+  display: flex;
+  gap: 10px;
+}
+
+.icon-btn {
+  background: var(--icon-bg);
+  border: none;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Popup container (hidden by default) */
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 100; /* Important */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Popup content box */
+.popup-content {
+  background-color: #2A004F;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.8);
+  max-width: 400px;
+  width: 80%;
+}
+
+.popup-content.rules-style {
+  position: relative;
+  background-color: #37004B; /* dark purple to match your game */
+  padding: 30px 40px;
+  border-radius: 16px;
+  text-align: left;
+  color: #ffffff;
+  max-width: 600px;
+  width: 90%;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: normal; /* make normal */
+  font-size: 16px;
+  line-height: 1.6; /* improved line spacing */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+}
+
+/* Title */
+.popup-content.rules-style h2 {
+  font-size: 28px;
+  font-weight: lighter;
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Close Button */
+.close-popup-btn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.close-popup-btn:hover {
+  transform: scale(1.2);
+}
+
+/* Rules list */
+.popup-content.rules-style ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.popup-content.rules-style ul ul {
+  list-style-type: circle;
+  padding-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* List items */
+.popup-content.rules-style li {
+  font-weight: normal; /* not bold */
+  margin-bottom: 8px; /* small spacing between items */
+}
+
+/* Footer text */
+.rules-footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #ffffff; /* white text */
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.popup-content.settings-style {
+  position: relative;
+  background-color: #37004B; /* match your rules popup */
+  padding: 30px 40px;
+  border-radius: 16px;
+  text-align: left;
+  color: #ffffff;
+  max-width: 400px;
+  width: 90%;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.6;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+}
+
+/* Title */
+.popup-content.settings-style h2 {
+  font-size: 28px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Close Button */
+.close-popup-btn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.close-popup-btn:hover {
+  transform: scale(1.2);
+}
+
+/* Settings group */
+.settings-group {
+  margin-bottom: 20px;
+}
+
+.settings-group label {
+  font-size: 16px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.settings-group select,
+.settings-group input[type="checkbox"] {
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+.settings-group select {
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  width: 100%;
+  background-color: #4A0061;
+  color: white;
+}
+
+/* Reset button */
+.reset-btn {
+  padding: 10px 20px;
+  background-color: #FF00C8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Apply button */
+.apply-btn {
+  padding: 12px 24px;
+  background-color: #FF00C8;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+.apply-btn:hover {
+  background-color: #e000b5;
+  transform: scale(1.05);
+}
+
+/* Toggle switch (Sound) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 26px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #00E676;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+.reset-btn:hover {
+  background-color: #e000b5;
+  transform: scale(1.05);
+}
+
+
+/* Icon button hover effect */
+.icon-btn {
+  background: var(--icon-bg);
+  border: none;
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.icon-btn:hover {
+  transform: scale(1.1);
+  background-color: #FF33C3; /* Slight color change on hover */
+}
+
+
+.home-main {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.game-title {
+  font-size: 120px;
+  background: linear-gradient(to bottom, #ffffff, #FFD600);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+
+.game-subtitle {
+  font-size: 30px;
+  background: linear-gradient(to bottom, #ffffff, #00E5FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 30px;
+}
+
+.username-input {
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 25px;
+  width: 260px;
+  text-align: center;
+}
+
+.play-btn {
+  background-color: var(--button-bg);
+  color: var(--button-text-color);
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  padding: 18px 50px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  margin-bottom: 200px;
+  margin-top: 20px;
+  font-family: "Fredoka", sans-serif;
+}
+
+.play-btn:hover {
+  transform: scale(1.05);
+  background-color: #00cc62;
+}

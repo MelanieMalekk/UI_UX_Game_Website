@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Word Flash</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="home-container">
+    <!-- Header -->
+    <header class="home-header">
+      <div class="high-score">
+        <span id="high-score-text">HIGH SCORE ⭐</span>
+      </div>
+
+      <div class="top-right">
+        <div class="username"><span id="header-username">USERNAME</span></div>
+        <div class="icons">
+            <button class="icon-btn" id="rules-btn"><i class="fas fa-book"></i></button>
+            <button class="icon-btn" id="settings-btn"><i class="fas fa-cog"></i></button> 
+        </div>
+        <!-- Rules Popup -->
+        <div class="popup" id="rules-popup">
+        <div class="popup-content rules-style">
+            <button class="close-popup-btn" id="close-rules">&times;</button>
+            <h2>GAME RULES:</h2>
+            <ul>
+            <li>Choose your level: Easy, Medium, or Hard.</li>
+            <li>A list of words will appear for a few seconds based on your chosen level:
+                <ul>
+                <li>Easy → 10 seconds display</li>
+                <li>Medium → 7 seconds display</li>
+                <li>Hard → 5 seconds display</li>
+                </ul>
+            </li>
+            <li>Try to memorize as many words as you can.</li>
+            <li>When the list disappears, type all the words you remember.</li>
+            <li>Submit your answers to see your score:
+                <ul>
+                <li>Easy → 100 points per correct word</li>
+                <li>Medium → 200 points per correct word</li>
+                <li>Hard → 500 points per correct word</li>
+                </ul>
+            </li>
+            </ul>
+            <p class="rules-footer"><strong>Play as many rounds as you like — switch levels or quit anytime!</strong></p>
+        </div>
+        </div>
+
+        <!-- Settings Popup -->
+        <div class="popup" id="settings-popup">
+        <div class="popup-content settings-style">
+            <button class="close-popup-btn" id="close-settings">&times;</button>
+            <h2>SETTINGS</h2>
+
+            <!-- Theme selection -->
+            <div class="settings-group">
+            <label for="theme-select">Theme:</label>
+            <select id="theme-select">
+                <option value="default">Default (Purple)</option>
+                <option value="dark">Dark Mode</option>
+                <option value="neon">Neon Mode</option>
+                <option value="light">Light Mode</option>
+            </select>
+            </div>
+
+            <!-- Font size selection -->
+            <div class="settings-group">
+            <label for="font-size-select">Font Size:</label>
+            <select id="font-size-select">
+                <option value="small">Small</option>
+                <option value="medium" selected>Medium</option>
+                <option value="large">Large</option>
+            </select>
+            </div>
+
+            <!-- Sound toggle -->
+            <div class="settings-group">
+            <label>
+                <input type="checkbox" id="sound-toggle" checked>
+                Sound ON/OFF
+            </label>
+            </div>
+            <!-- Apply Settings button -->
+            <div class="settings-group">
+            <button class="apply-btn" id="apply-settings-btn">Apply Settings</button>
+            </div>
+        </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="home-main">
+      <h1 class="game-title">Word Flash</h1>
+      <p class="game-subtitle">#1 Memory Game in Canada!</p>
+
+      <!-- Ask for username (first time) -->
+      <div class="username-section" id="username-section">
+        <input 
+          class="username-input"
+          type="text"
+          id="username-input"
+          placeholder="Enter your name"
+        />
+        <br>
+        <button class="play-btn" id="save-username-btn">PLAY ▶</button>
+      </div>
+
+      <!-- Welcome back screen -->
+      <div id="welcome-section" style="display: none;">
+        <p>Welcome, <span id="saved-username"></span>!</p>
+        <button class="play-btn" id="play-btn-existing">PLAY ▶</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- JS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedUsername = localStorage.getItem('wordflash_username');
+      const savedHighscore = localStorage.getItem('wordflash_highscore');
+
+      // Update header username
+      if (savedUsername) {
+        document.getElementById('header-username').textContent = savedUsername;
+      }
+
+      // Update header high score
+      if (savedHighscore) {
+        document.getElementById('high-score-text').textContent = `HIGH SCORE: ${savedHighscore} ⭐`;
+      } else {
+        document.getElementById('high-score-text').textContent = 'HIGH SCORE ⭐';
+      }
+
+      // Show correct section
+      if (savedUsername) {
+        document.getElementById('username-section').style.display = 'none';
+        document.getElementById('welcome-section').style.display = 'block';
+        document.getElementById('saved-username').textContent = savedUsername;
+      } else {
+        document.getElementById('username-section').style.display = 'block';
+        document.getElementById('welcome-section').style.display = 'none';
+      }
+    });
+
+    // Save username (first time) and go to game
+    document.getElementById('save-username-btn').addEventListener('click', () => {
+      const usernameInput = document.getElementById('username-input').value.trim();
+
+      if (usernameInput) {
+        localStorage.setItem('wordflash_username', usernameInput);
+
+        // Update header
+        document.getElementById('header-username').textContent = usernameInput;
+
+        // Go to game.html
+        window.location.href = 'levels.html';
+      } else {
+        alert('Please enter your name!');
+      }
+    });
+
+    // Go to game.html for returning user
+    document.getElementById('play-btn-existing').addEventListener('click', () => {
+      window.location.href = 'levels.html';
+    });
+
+    </script>
+
+    <script>
+    // Rules popup
+    document.getElementById('rules-btn').addEventListener('click', () => {
+        document.getElementById('rules-popup').style.display = 'flex';
+    });
+
+    document.getElementById('close-rules').addEventListener('click', () => {
+        document.getElementById('rules-popup').style.display = 'none';
+    });
+
+    // Settings popup
+    document.getElementById('settings-btn').addEventListener('click', () => {
+        document.getElementById('settings-popup').style.display = 'flex';
+    });
+
+    document.getElementById('close-settings').addEventListener('click', () => {
+        document.getElementById('settings-popup').style.display = 'none';
+    });
+    </script>
+
+    <script>
+        document.getElementById('apply-settings-btn').addEventListener('click', () => {
+        const theme = document.getElementById('theme-select').value;
+        const fontSize = document.getElementById('font-size-select').value;
+        const soundOn = document.getElementById('sound-toggle').checked;
+
+        console.log('Theme:', theme);
+        console.log('Font size:', fontSize);
+        console.log('Sound ON:', soundOn);
+
+        // Close popup
+        document.getElementById('settings-popup').style.display = 'none';
+
+        // Later → apply changes to your game here!
+        });
+    </script>
+</body>
+</html>
