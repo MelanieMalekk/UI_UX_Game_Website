@@ -374,22 +374,21 @@ input:checked + .slider:before {
 }
 
 .play-btn {
-  background-color: var(--button-bg);
-  color: var(--button-text-color);
-  font-size: 24px;
-  font-weight: bold;
-  border: none;
-  padding: 18px 50px;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  transition: transform 0.2s ease, background-color 0.2s ease;
-  margin-bottom: 200px;
-  margin-top: 20px;
-  font-family: "Fredoka", sans-serif;
+  display: inline-block;
+  text-decoration: none;
+  padding: 20px 40px;              /* Bigger padding */
+  font-size: 1.6rem;               /* Bigger text */
+  font-weight: 900;                /* Extra bold */
+  background-color: #00E676;
+  color: white;
+  border-radius: 14px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
+}
+.play-btn:hover {
+  background-color: #00cc62;
+  transform: scale(1.08);
 }
 
-.play-btn:hover {
-  transform: scale(1.05);
-  background-color: #00cc62;
-}
+
